@@ -1,0 +1,324 @@
+<!-- Created by Erion Nezha — © 2026 All rights reserved -->
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punë Shqip — Erion Nezha</title>
+<meta name="description" content="Kërko, filtro dhe gjurmo aplikimet për punë — me të dhëna demo në shqip.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<style id="appcss">
+/* ============ ERION NEZHA · ULTRA-PREMIUM THEME (shared) ============ */
+:root{
+  --bg0:#070b16; --bg1:#0b1124; --gold:#D4AF37; --gold2:#f3dd8f;
+  --ink:#eef1f7; --mut:#9aa3b8; --glass:rgba(255,255,255,.055);
+  --line:rgba(212,175,55,.22); --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:var(--bg0); color:var(--ink); min-height:100vh; overflow-x:hidden;
+}
+.bg-orbs{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg-orbs span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 14s ease-in-out infinite alternate}
+.bg-orbs span:nth-child(1){width:520px;height:520px;left:-140px;top:-120px;background:radial-gradient(circle,#D4AF37,transparent 65%)}
+.bg-orbs span:nth-child(2){width:620px;height:620px;right:-180px;top:30%;background:radial-gradient(circle,#2b3f8f,transparent 65%);animation-delay:-5s}
+.bg-orbs span:nth-child(3){width:460px;height:460px;left:20%;bottom:-160px;background:radial-gradient(circle,#6b4fa1,transparent 65%);animation-delay:-9s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.site-header{padding:64px 0 30px;text-align:center}
+.overline{letter-spacing:.42em;font-size:11px;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.site-header h1{font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.15;
+  background:linear-gradient(120deg,#fff 20%,var(--gold2) 55%,var(--gold) 80%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.site-header p{color:var(--mut);max-width:640px;margin:14px auto 0;font-size:16px;line-height:1.65}
+.live-badge{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 18px;border-radius:999px;
+  border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);font-size:13px;color:var(--gold2);letter-spacing:.08em}
+.live-badge i{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 12px #3ddc84;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.demo-wrap{margin:26px 0 54px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 24px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);padding:30px}
+.code-section{margin:0 0 60px}
+.code-section h2{font-size:24px;margin-bottom:6px}
+.code-section .sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0;align-items:center}
+.ctab{padding:10px 22px;border-radius:12px 12px 0 0;border:1px solid var(--line);border-bottom:none;cursor:pointer;
+  background:rgba(255,255,255,.03);color:var(--mut);font-size:14px;font-weight:600;letter-spacing:.04em;transition:.25s}
+.ctab.active{background:linear-gradient(180deg,rgba(212,175,55,.22),rgba(212,175,55,.06));color:var(--gold2)}
+.ctab:hover{color:var(--ink)}
+#copyBtn{margin-left:auto;padding:9px 20px;border-radius:10px;border:1px solid var(--line);cursor:pointer;
+  background:linear-gradient(120deg,var(--gold),#a8842a);color:#0a0e1a;font-weight:700;font-size:13px;transition:.25s}
+#copyBtn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(212,175,55,.35)}
+.codebox{border:1px solid var(--line);border-radius:0 14px 14px 14px;overflow:hidden;background:#0d1326}
+.codebox pre{margin:0;max-height:560px;overflow:auto}
+.codebox pre code{display:block;padding:22px;font-family:"Cascadia Code","Fira Code",Consolas,monospace;font-size:13.5px;line-height:1.7;background:transparent}
+.codebox pre::-webkit-scrollbar{width:10px;height:10px}
+.codebox pre::-webkit-scrollbar-thumb{background:rgba(212,175,55,.35);border-radius:8px}
+footer{text-align:center;padding:34px 20px 44px;color:var(--mut);font-size:14px;border-top:1px solid rgba(212,175,55,.14)}
+footer strong{color:var(--gold2)}
+/* ============ APP CSS (per projekt) ============ */
+
+.pj-note{display:inline-block;margin-bottom:18px;padding:8px 18px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(212,175,55,.08);color:var(--gold2);font-size:13px;letter-spacing:.03em}
+.pj-stats{display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.pj-stat{flex:1;min-width:130px;text-align:center;padding:16px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,255,255,.03)}
+.pj-stat b{display:block;font-size:26px;color:var(--gold2)}
+.pj-stat span{font-size:12px;color:var(--mut)}
+.pj-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.pj-tab{padding:10px 20px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);
+  color:var(--mut);font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.pj-tab.active{background:linear-gradient(120deg,rgba(212,175,55,.3),rgba(212,175,55,.08));color:var(--gold2);border-color:var(--gold)}
+.pj-tab span{background:var(--gold);color:#0a0e1a;font-size:11px;font-weight:800;border-radius:8px;padding:1px 7px;margin-left:4px}
+.pj-toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.pj-toolbar input,.pj-toolbar select{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;
+  padding:11px 14px;color:var(--ink);font-size:14px;outline:none;width:100%}
+.pj-toolbar input:focus,.pj-toolbar select:focus{border-color:var(--gold)}
+.pj-toolbar select option{background:#0d1428}
+.pj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.pj-card{border:1px solid var(--line);border-radius:16px;padding:20px;background:rgba(255,255,255,.03);
+  transition:.25s;display:flex;flex-direction:column;gap:10px;animation:pjin .3s ease}
+@keyframes pjin{from{opacity:0;transform:translateY(10px)}}
+.pj-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.pj-card h3{font-size:17px}
+.pj-comp{color:var(--gold2);font-size:14px;font-weight:600}
+.pj-badges{display:flex;gap:8px;flex-wrap:wrap}
+.pj-badge{font-size:11.5px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.pj-badge.pay{color:var(--gold2);border-color:var(--gold);font-weight:700}
+.pj-desc{font-size:13.5px;color:var(--mut);line-height:1.6;flex:1}
+.pj-date{font-size:12px;color:var(--mut)}
+.pj-actions{display:flex;gap:10px}
+.pj-btn{flex:1;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);
+  color:var(--ink);font-size:13.5px;font-weight:600;cursor:pointer;transition:.2s}
+.pj-btn:hover{border-color:var(--gold);background:rgba(212,175,55,.12)}
+.pj-btn.primary{background:linear-gradient(120deg,var(--gold),#a8842a);color:#0a0e1a;border:none;font-weight:700}
+.pj-btn.primary:disabled{opacity:.5;cursor:default;transform:none}
+.pj-btn.savedon{border-color:var(--gold);color:var(--gold2)}
+.pj-app{border:1px solid var(--line);border-radius:16px;padding:20px;background:rgba(255,255,255,.03)}
+.pj-app h3{font-size:16px;margin-bottom:4px}
+.pj-status{display:inline-block;font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px;margin:8px 0}
+.pj-status.s0{background:rgba(120,150,255,.15);color:#9db4ff;border:1px solid rgba(120,150,255,.4)}
+.pj-status.s1{background:rgba(255,200,80,.12);color:#ffd27a;border:1px solid rgba(255,200,80,.4)}
+.pj-status.s2{background:rgba(61,220,132,.12);color:#5fe89a;border:1px solid rgba(61,220,132,.4)}
+.pj-status.s3{background:rgba(212,175,55,.16);color:var(--gold2);border:1px solid var(--gold)}
+.pj-status.sr{background:rgba(255,100,100,.12);color:#ff9a9a;border:1px solid rgba(255,100,100,.4)}
+.pj-app .pj-actions{margin-top:6px}
+.pj-hempty{text-align:center;color:var(--mut);padding:40px 0;font-size:15px}
+@media(max-width:760px){.pj-toolbar{grid-template-columns:1fr 1fr}}
+
+@media(max-width:640px){.glass{padding:20px}.site-header{padding:44px 0 22px}}
+</style>
+</head>
+<body>
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<header class="site-header wrap">
+  <div class="overline">Erion Nezha · Web Projects</div>
+  <h1>Punë Shqip</h1>
+  <p>Kërko, filtro dhe gjurmo aplikimet për punë — me të dhëna demo në shqip.</p>
+  <div class="live-badge"><i></i> LIVE DEMO</div>
+</header>
+
+<main class="wrap">
+  <section class="demo-wrap">
+    <div class="glass" id="demo">
+
+<div class="pj-note">📌 Të dhëna demo — punë fiktive për demonstrim; ruhen në shfletuesin tënd</div>
+
+<div class="pj-stats">
+  <div class="pj-stat"><b id="pjStApps">0</b><span>Aplikime</span></div>
+  <div class="pj-stat"><b id="pjStInt">0</b><span>Intervista</span></div>
+  <div class="pj-stat"><b id="pjStSaved">0</b><span>Të ruajtura</span></div>
+</div>
+
+<div class="pj-tabs">
+  <button class="pj-tab active" data-tab="jobs">💼 Punët</button>
+  <button class="pj-tab" data-tab="saved">🔖 Të ruajtura <span id="pjSavedN"></span></button>
+  <button class="pj-tab" data-tab="apps">📝 Aplikimet e mia <span id="pjAppsN"></span></button>
+</div>
+
+<div class="pj-toolbar" id="pjToolbar">
+  <input id="pjQ" placeholder="🔍 Kërko titull ose kompani…" autocomplete="off">
+  <select id="pjCat"><option value="">Të gjitha kategoritë</option><option>Teknologji</option><option>Dizajn</option><option>Marketing</option><option>Financë</option></select>
+  <select id="pjType"><option value="">Të gjitha tipet</option><option>Full-time</option><option>Part-time</option><option>Remote</option></select>
+  <select id="pjCity"><option value="">Të gjitha qytetet</option><option>Tiranë</option><option>Durrës</option><option>Prishtinë</option><option>Remote</option></select>
+  <select id="pjSort"><option value="new">Më të rejat</option><option value="pay">Paga zbritëse</option></select>
+</div>
+
+<div class="pj-grid" id="pjGrid"></div>
+<div class="pj-hempty" id="pjEmpty" hidden>Asnjë rezultat. Provo të ndryshosh filtrat. 🔍</div>
+
+    </div>
+  </section>
+
+  <section class="code-section">
+    <h2>💻 Kodi Burim</h2>
+    <p class="sub">I gjithë kodi i këtij projekti — i lexueshëm, i kopjueshëm, gati për t'u mësuar.</p>
+    <div class="tabs">
+      <button class="ctab active" data-tab="html">HTML</button>
+      <button class="ctab" data-tab="css">CSS</button>
+      <button class="ctab" data-tab="js">JavaScript</button>
+      <button id="copyBtn">Kopjo kodin</button>
+    </div>
+    <div class="codebox"><pre><code id="codeView" class="language-html"></code></pre></div>
+  </section>
+</main>
+
+<footer>Krijuar nga <strong>Erion Nezha</strong> · © 2026 — Të gjitha të drejtat e rezervuara</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script id="appjs">
+
+(function(){
+"use strict";
+var LS="puneshqip_v1";
+var JOBS=[
+ {id:1,t:"Zhvillues Frontend (React)",co:"TechNova",city:"Tiranë",cat:"Teknologji",type:"Full-time",pay:1800,d:"Kërkojmë zhvillues React me 2+ vite përvojë për platformën tonë fintech.",date:"2026-10-06"},
+ {id:2,t:"Dizajner UI/UX",co:"Kreativ Studio",city:"Tiranë",cat:"Dizajn",type:"Full-time",pay:1400,d:"Dizajno eksperienca dixhitale për klientë ndërkombëtarë. Portfolio e domosdoshme.",date:"2026-10-05"},
+ {id:3,t:"Specialist SEO & Marketing",co:"Rritja Digjitale",city:"Remote",cat:"Marketing",type:"Remote",pay:1200,d:"Menaxho fushata SEO dhe Google Ads për 15+ klientë aktivë.",date:"2026-10-04"},
+ {id:4,t:"Kontabilist",co:"Financa Plus",city:"Durrës",cat:"Financë",type:"Full-time",pay:900,d:"Mbaj evidencën kontabël dhe raporto mujore për SME.",date:"2026-10-03"},
+ {id:5,t:"Zhvillues Backend (Python)",co:"DataAlb",city:"Prishtinë",cat:"Teknologji",type:"Full-time",pay:2100,d:"Ndërto API të shkallëzueshme me Python/FastAPI dhe PostgreSQL.",date:"2026-10-02"},
+ {id:6,t:"Menaxher Social Media",co:"Viral Media",city:"Tiranë",cat:"Marketing",type:"Part-time",pay:600,d:"Krijo përmbajtje ditore për Instagram dhe TikTok. 20 orë/javë.",date:"2026-10-01"},
+ {id:7,t:"Analist Financiar",co:"Banka Kombëtare",city:"Tiranë",cat:"Financë",type:"Full-time",pay:1600,d:"Analizo portofolin e kredive dhe përgatit raporte për bordin.",date:"2026-09-29"},
+ {id:8,t:"Ilustrues",co:"Fëmijët Studio",city:"Remote",cat:"Dizajn",type:"Remote",pay:1100,d:"Ilustrime për libra fëmijësh — stil i ngrohtë dhe miqësor.",date:"2026-09-28"},
+ {id:9,t:"DevOps Engineer",co:"CloudNine",city:"Remote",cat:"Teknologji",type:"Remote",pay:2400,d:"Mirëmbaj infrastrukturën Kubernetes dhe pipeline-et CI/CD.",date:"2026-09-27"},
+ {id:10,t:"Copywriter",co:"Fjala Agency",city:"Prishtinë",cat:"Marketing",type:"Part-time",pay:550,d:"Shkruaj tekste reklamuese në shqip dhe anglisht për fushata.",date:"2026-09-25"},
+ {id:11,t:"QA Tester",co:"SoftTest",city:"Durrës",cat:"Teknologji",type:"Full-time",pay:1000,d:"Testo aplikacione mobile dhe shkruaj raste testimi të qarta.",date:"2026-09-24"},
+ {id:12,t:"Dizajner Grafik",co:"PrintArt",city:"Tiranë",cat:"Dizajn",type:"Full-time",pay:950,d:"Krijo identitete vizuale, logo dhe materiale marketingu.",date:"2026-09-22"}
+];
+var FLOW=["E dërguar","Në shqyrtim","Intervistë","Pranuar"];
+var state={saved:[],apps:[]};
+try{var raw=localStorage.getItem(LS);if(raw)state=JSON.parse(raw);}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function jobById(id){return JOBS.filter(function(j){return j.id===id;})[0];}
+function applied(id){return state.apps.filter(function(a){return a.jobId===id;})[0];}
+
+var grid=document.getElementById("pjGrid"),
+    empty=document.getElementById("pjEmpty"),
+    toolbar=document.getElementById("pjToolbar"),
+    tab="jobs",
+    q=document.getElementById("pjQ"),cat=document.getElementById("pjCat"),
+    type=document.getElementById("pjType"),city=document.getElementById("pjCity"),
+    sort=document.getElementById("pjSort");
+
+function fmtDate(ds){var p=ds.split("-");return p[2]+"."+p[1]+"."+p[0];}
+
+function render(){
+  document.getElementById("pjSavedN").textContent=state.saved.length?"("+state.saved.length+")":"";
+  document.getElementById("pjAppsN").textContent=state.apps.length?"("+state.apps.length+")":"";
+  document.getElementById("pjStApps").textContent=state.apps.length;
+  document.getElementById("pjStInt").textContent=state.apps.filter(function(a){return a.status==="Intervistë";}).length;
+  document.getElementById("pjStSaved").textContent=state.saved.length;
+  toolbar.style.display=tab==="jobs"?"grid":"none";
+  var tabs=document.querySelectorAll(".pj-tab");
+  for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle("active",tabs[i].getAttribute("data-tab")===tab);
+  grid.innerHTML="";
+  var items=[];
+  if(tab==="jobs"){
+    var query=q.value.trim().toLowerCase();
+    items=JOBS.filter(function(j){
+      if(query&&(j.t.toLowerCase().indexOf(query)<0&&j.co.toLowerCase().indexOf(query)<0))return false;
+      if(cat.value&&j.cat!==cat.value)return false;
+      if(type.value&&j.type!==type.value)return false;
+      if(city.value&&j.city!==city.value)return false;
+      return true;
+    });
+    items.sort(function(a,b){return sort.value==="pay"?(b.pay-a.pay):(b.date<a.date?-1:1);});
+    items.forEach(function(j){grid.appendChild(jobCard(j));});
+  }else if(tab==="saved"){
+    state.saved.map(jobById).filter(Boolean).forEach(function(j){grid.appendChild(jobCard(j));});
+  }else{
+    state.apps.slice().reverse().forEach(function(a){
+      var j=jobById(a.jobId);if(!j)return;
+      grid.appendChild(appCard(j,a));
+    });
+  }
+  empty.hidden=grid.children.length>0;
+}
+
+function jobCard(j){
+  var sv=state.saved.indexOf(j.id)>-1, ap=!!applied(j.id);
+  var d=document.createElement("div");d.className="pj-card";
+  d.innerHTML="<h3>"+esc(j.t)+"</h3>"+
+    '<div class="pj-comp">'+esc(j.co)+"</div>"+
+    '<div class="pj-badges"><span class="pj-badge">'+esc(j.city)+'</span><span class="pj-badge">'+esc(j.cat)+'</span>'+
+    '<span class="pj-badge">'+esc(j.type)+'</span><span class="pj-badge pay">€'+j.pay+'/muaj</span></div>'+
+    '<div class="pj-desc">'+esc(j.d)+"</div>"+
+    '<div class="pj-date">📅 '+fmtDate(j.date)+"</div>"+
+    '<div class="pj-actions">'+
+    '<button class="pj-btn'+(sv?" savedon":"")+'">'+(sv?"✓ E ruajtur":"🔖 Ruaj")+"</button>"+
+    '<button class="pj-btn primary"'+(ap?" disabled":"")+">"+(ap?"✓ Aplikuar":"Apliko tani")+"</button>"+
+    "</div>";
+  var btns=d.querySelectorAll(".pj-btn");
+  btns[0].addEventListener("click",function(){
+    var i=state.saved.indexOf(j.id);
+    if(i>-1)state.saved.splice(i,1);else state.saved.push(j.id);
+    save();render();
+  });
+  if(!ap)btns[1].addEventListener("click",function(){
+    state.apps.push({jobId:j.id,status:FLOW[0],at:fmtDate("2026-10-07")});
+    save();render();
+  });
+  return d;
+}
+function appCard(j,a){
+  var si=FLOW.indexOf(a.status), rej=a.status==="I refuzuar";
+  var d=document.createElement("div");d.className="pj-app";
+  d.innerHTML="<h3>"+esc(j.t)+"</h3>"+
+    '<div class="pj-comp">'+esc(j.co)+" · "+esc(j.city)+"</div>"+
+    '<div><span class="pj-status '+(rej?"sr":"s"+si)+'">'+esc(a.status)+"</span></div>"+
+    '<div class="pj-date">Aplikuar më: '+esc(a.at)+"</div>"+
+    '<div class="pj-actions">'+
+    (rej?"":'<button class="pj-btn primary"'+(si>=3?" disabled":"")+">Përparo →</button>"+
+           '<button class="pj-btn" data-r="1">Refuzo</button>')+
+    "</div>";
+  var nx=d.querySelector(".pj-btn.primary");
+  if(nx&&!rej)nx.addEventListener("click",function(){
+    var i=FLOW.indexOf(a.status);
+    if(i<3){a.status=FLOW[i+1];save();render();}
+  });
+  var rj=d.querySelector('[data-r="1"]');
+  if(rj)rj.addEventListener("click",function(){a.status="I refuzuar";save();render();});
+  return d;
+}
+
+var tabs=document.querySelectorAll(".pj-tab");
+for(var i=0;i<tabs.length;i++)tabs[i].addEventListener("click",function(){tab=this.getAttribute("data-tab");render();});
+[q,cat,type,city,sort].forEach(function(el){el.addEventListener("input",render);el.addEventListener("change",render);});
+render();save();
+})();
+
+
+</script>
+<script>
+(function(){
+  var tabs={
+    html:{lang:"html",get:function(){return document.getElementById("demo").innerHTML.trim();}},
+    css:{lang:"css",get:function(){return document.getElementById("appcss").textContent.trim();}},
+    js:{lang:"javascript",get:function(){return document.getElementById("appjs").textContent.trim();}}
+  };
+  var view=document.getElementById("codeView"),cur="html";
+  function render(){
+    view.textContent=tabs[cur].get();
+    view.className="language-"+tabs[cur].lang;
+    if(window.hljs){delete view.dataset.highlighted;hljs.highlightElement(view);}
+    var bs=document.querySelectorAll(".ctab");
+    for(var i=0;i<bs.length;i++)bs[i].classList.toggle("active",bs[i].dataset.tab===cur);
+  }
+  var bs=document.querySelectorAll(".ctab");
+  for(var i=0;i<bs.length;i++)bs[i].addEventListener("click",function(){cur=this.dataset.tab;render();});
+  document.getElementById("copyBtn").addEventListener("click",function(){
+    var b=this,code=tabs[cur].get();
+    function done(t){b.textContent=t;setTimeout(function(){b.textContent="Kopjo kodin";},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(function(){done("U kopjua ✓");},function(){done("Dështoi");});}
+    else{var ta=document.createElement("textarea");ta.value=code;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done("U kopjua ✓");}catch(e){done("Dështoi");}document.body.removeChild(ta);}
+  });
+  render();
+})();
+</script>
+</body>
+</html>
